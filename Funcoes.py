@@ -3,17 +3,17 @@ import os
 
 class Conexao:
     conexao = mysql.connector.connect(
-        host = '127.0.0.1',
-        user = 'root',
-        password = 'ceub123456',
-        database = 'sys'
+        host = 'ipDestino',
+        user = 'user',
+        password = 'senha',
+        database = 'db'
     )
 
 def cria_banco(database):
     conexao = mysql.connector.connect(
-        host = '127.0.0.1',
-        password = 'ceub123456',
-        user = 'root'
+        host = 'ipDestino',
+        password = 'senha',
+        user = 'user'
     )
     cursor = conexao.cursor()
 
@@ -24,8 +24,8 @@ def cria_banco(database):
 
 def cria_tabela_usuario(banco, senha):
     conexao = mysql.connector.connect(
-        user = 'root',
-        host = '127.0.0.1',
+        user = 'user',
+        host = 'ipDestino',
         password = senha,
         database = banco
     )
