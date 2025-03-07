@@ -9,6 +9,19 @@ class Conexao:
         database = 'crudpython'
     )
 
+def cria_banco(database):
+    conexao = mysql.connector.connect(
+        host = '127.0.0.1',
+        password = 'nãosei',
+        user = 'root'
+    )
+    cursor = conexao.cursor()
+
+    cursor.execute(f'create database {database}')
+    print(f'Banco {database} criado com sucesso!')
+
+    conexao.commit()
+
 def cria_tabela_usuario():
     conexao = Conexao.conexao
     cursor = conexao.cursor()
