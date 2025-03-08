@@ -3,17 +3,17 @@ import os
 
 class Conexao:
     conexao = mysql.connector.connect(
-        host = '127.0.0.1',
-        user = 'root',
-        password = 'nãosei',
-        database = 'crudpython'
+        host = 'ipDestino',
+        user = 'user',
+        password = 'senha',
+        database = 'db'
     )
 
 def cria_banco(database):
     conexao = mysql.connector.connect(
-        host = '127.0.0.1',
-        password = 'nãosei',
-        user = 'root'
+        host = 'ipDestino',
+        password = 'senha',
+        user = 'user'
     )
     cursor = conexao.cursor()
 
@@ -22,8 +22,13 @@ def cria_banco(database):
 
     conexao.commit()
 
-def cria_tabela_usuario():
-    conexao = Conexao.conexao
+def cria_tabela_usuario(banco, senha):
+    conexao = mysql.connector.connect(
+        user = 'user',
+        host = 'ipDestino',
+        password = senha,
+        database = banco
+    )
     cursor = conexao.cursor()
 
     cursor.execute(f'''Create table if not exists usuario(
@@ -32,6 +37,7 @@ def cria_tabela_usuario():
                    idade char(2) not null,
                    senha varchar(20)
                    )''')
+    print('Tabela "usuário" criada com sucesso!!')
     conexao.commit()
     conexao.close()
 

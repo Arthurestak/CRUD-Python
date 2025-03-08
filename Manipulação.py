@@ -6,11 +6,11 @@ FUNÇÕES:
 
 procura_usuario(nome),
 adiciona_usuario(),
-cria_tabela_usuario(),
-apaga_usuarios(id)
-cria_banco(database)
+apaga_usuarios(id),
+cria_tabela_usuario(banco, senha)
 
 '''
+
 
 class Conexao:
     conexao = mysql.connector.connect(
