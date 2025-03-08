@@ -49,11 +49,18 @@ def adiciona_usuario():
         conexao = Conexao.conexao
         cursor = conexao.cursor()
 
-        cursor.execute("insert into usuario values (default,%s,%s,%s)",(nome,idade,senha))
+        cursor.execute("select * from usuario where nome = %s", (nome,))
 
-        print(f'Usuário "{nome}" adicionado com sucesso!')
+        usuario = cursor.fetchone()
 
-        conexao.commit()
+        if usuario:
+            print(f'Usuário "{nome}" já está sendo utilizado!\n')
+        else:
+            cursor.execute("insert into usuario (nome,idade,senha) values (%s,%s,%s)",(nome,idade,senha))
+            conexao.commit()
+            print(f'Usuário "{nome}" adicionado com sucesso!')
+            
+        
 
     else:
         print('Preencha todos os campos!')
