@@ -57,4 +57,3 @@ if usuario:
         print(f'Seja Bem-Vindo Usuário {usuario[1]}!')
 else:
     print('Ocorreu algum erro!')
-
