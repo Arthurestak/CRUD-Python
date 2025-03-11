@@ -113,18 +113,27 @@ def update_usuario(id):
         if nome.startswith('s'):
             mudanca = input('Para qual nome deseja alterar? ')
             cursor.execute('update usuario set nome = %s where id_usuario = %s', (mudanca,id))
-
+        os.system('cls')
         idade = input('Deseja alterar a sua idade? [S], [N] ').lower()
         if idade.startswith('s'):
             mudanca = input('Para qual idade deseja alterar? ')
             cursor.execute('update usuario set idade = %s where id_usuario = %s', (mudanca,id))
-        senha = input('Para seguir com as mudanças informe a sua senha: ')
+        os.system('cls')
+        senhaInput = input('Deseja alterar a sua senha? [S], [N] ').lower()
+        if senhaInput.startswith('s'):
+            mudanca = input('Para qual senha deseja alterar? ')
+        os.system('cls')
+        senha = input('Para seguir com as mudanças informe a sua senha antiga: ')
+        
         cursor.execute('Select * from usuario where id_usuario = %s', (id,))
         usuario = cursor.fetchone()
 
-        
+
+    
         if usuario and senha == usuario[3]:
+            cursor.execute('update usuario set senha = %s where id_usuario = %s', (mudanca,id))
             conexao.commit()
+            os.system('cls')
             print('Mudanças feitas com sucesso!!')
         else:
             print('Senha incorreta! Voltando ao início...')

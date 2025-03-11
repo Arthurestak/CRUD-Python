@@ -3,11 +3,12 @@ import Funcoes
 '''
 FUNÇÕES:
 
-procura_usuario(nome),
-adiciona_usuario(),
-apaga_usuarios(id),
-cria_tabela_usuario(banco, senha)
-update_usuario(id)
+C. cria_tabela_usuario(banco, senha)
+R. procura_usuario(nome),
+U. update_usuario(id),
+D. apaga_usuarios(id),
+
+adiciona_usuario()
 
 '''
 
