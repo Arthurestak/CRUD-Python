@@ -3,17 +3,17 @@ import os
 
 class Conexao:
     conexao = mysql.connector.connect(
-        host = 'ipDestino',
-        user = 'user',
-        password = 'senha',
-        database = 'db'
+        host = '127.0.0.1',
+        user = 'root',
+        password = 'nãosei',
+        database = 'crudpython'
     )
 
 def cria_banco(database):
     conexao = mysql.connector.connect(
-        host = 'ipDestino',
-        password = 'senha',
-        user = 'user'
+        host = '127.0.0.1',
+        password = 'nãosei',
+        user = 'root'
     )
     cursor = conexao.cursor()
 
@@ -24,8 +24,8 @@ def cria_banco(database):
 
 def cria_tabela_usuario(banco, senha):
     conexao = mysql.connector.connect(
-        user = 'user',
-        host = 'ipDestino',
+        user = 'root',
+        host = '127.0.0.1',
         password = senha,
         database = banco
     )
@@ -104,5 +104,30 @@ def apaga_usuarios(id):
         print('Não foi possível deletar esse usuário!')
     conexao.commit()
 
+def update_usuario(id):
+    conexao = Conexao.conexao
+    cursor = conexao.cursor()
 
+    while True:
+        nome = input('Deseja alterar o seu nome? [S],[N] ').lower()
+        if nome.startswith('s'):
+            mudanca = input('Para qual nome deseja alterar? ')
+            cursor.execute('update usuario set nome = %s where id_usuario = %s', (mudanca,id))
 
+        idade = input('Deseja alterar a sua idade? [S], [N] ').lower()
+        if idade.startswith('s'):
+            mudanca = input('Para qual idade deseja alterar? ')
+            cursor.execute('update usuario set idade = %s where id_usuario = %s', (mudanca,id))
+        senha = input('Para seguir com as mudanças informe a sua senha: ')
+        cursor.execute('Select * from usuario where id_usuario = %s', (id,))
+        usuario = cursor.fetchone()
+
+        
+        if usuario and senha == usuario[3]:
+            conexao.commit()
+            print('Mudanças feitas com sucesso!!')
+        else:
+            print('Senha incorreta! Voltando ao início...')
+            continue
+        break
+        
