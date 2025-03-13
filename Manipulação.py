@@ -1,6 +1,7 @@
 import Funcoes
 
 '''
+
 FUNÇÕES:
 
 C. cria_tabela_usuario(banco, senha)
@@ -12,4 +13,5 @@ adiciona_usuario()
 
 '''
 
-Funcoes.update_usuario(2)
+Funcoes.apaga_usuarios()
+

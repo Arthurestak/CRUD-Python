@@ -5,14 +5,14 @@ class Conexao:
     conexao = mysql.connector.connect(
         host = '127.0.0.1',
         user = 'root',
-        password = 'ceub123456',
-        database = 'arthur'
+        password = 'senac',
+        database = 'projetolm_android'
     )
 
 def cria_banco(database):
     conexao = mysql.connector.connect(
         host = '127.0.0.1',
-        password = 'ceub123456',
+        password = 'senac',
         user = 'root'
     )
     cursor = conexao.cursor()
