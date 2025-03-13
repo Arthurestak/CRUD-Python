@@ -12,4 +12,4 @@ adiciona_usuario()
 
 '''
 
-Funcoes.update_usuario(4)
+Funcoes.update_usuario(2)

@@ -5,14 +5,14 @@ class Conexao:
     conexao = mysql.connector.connect(
         host = '127.0.0.1',
         user = 'root',
-        password = 'nãosei',
-        database = 'crudpython'
+        password = 'ceub123456',
+        database = 'arthur'
     )
 
 def cria_banco(database):
     conexao = mysql.connector.connect(
         host = '127.0.0.1',
-        password = 'nãosei',
+        password = 'ceub123456',
         user = 'root'
     )
     cursor = conexao.cursor()
@@ -114,27 +114,35 @@ def update_usuario(id):
             mudanca = input('Para qual nome deseja alterar? ')
             cursor.execute('update usuario set nome = %s where id_usuario = %s', (mudanca,id))
         os.system('cls')
+
         idade = input('Deseja alterar a sua idade? [S], [N] ').lower()
         if idade.startswith('s'):
-            mudanca = input('Para qual idade deseja alterar? ')
-            cursor.execute('update usuario set idade = %s where id_usuario = %s', (mudanca,id))
+            mudanca2 = input('Para qual idade deseja alterar? ')
+            cursor.execute('update usuario set idade = %s where id_usuario = %s', (mudanca2,id))
         os.system('cls')
+
         senhaInput = input('Deseja alterar a sua senha? [S], [N] ').lower()
         if senhaInput.startswith('s'):
-            mudanca = input('Para qual senha deseja alterar? ')
+            mudanca3 = input('Para qual senha deseja alterar? ')
         os.system('cls')
+
         senha = input('Para seguir com as mudanças informe a sua senha antiga: ')
         
         cursor.execute('Select * from usuario where id_usuario = %s', (id,))
         usuario = cursor.fetchone()
 
 
-    
+        
         if usuario and senha == usuario[3]:
-            cursor.execute('update usuario set senha = %s where id_usuario = %s', (mudanca,id))
-            conexao.commit()
-            os.system('cls')
-            print('Mudanças feitas com sucesso!!')
+            try:
+                cursor.execute('update usuario set senha = %s where id_usuario = %s', (mudanca3,id))
+                conexao.commit()
+                os.system('cls')
+                print('Sucesso!!')
+            except:
+                conexao.commit()
+                print('Senha não foi alterada! Mudanças feitas com sucesso!')
+                break
         else:
             print('Senha incorreta! Voltando ao início...')
             continue
