@@ -1,17 +1,18 @@
 import Funcoes
 
+
 '''
 
 FUNÇÕES:
 
-C. cria_tabela_usuario(banco, senha)
-R. procura_usuario(nome),
-U. update_usuario(id),
-D. apaga_usuarios(id),
+C. cria_tabela(), cria_banco()
+R. procura(),
+U. update_usuario(),
+D. apaga_usuarios(),
 
 adiciona_usuario()
 
 '''
 
-Funcoes.apaga_usuarios()
+
 
