@@ -6,7 +6,7 @@ class Conexao:
         host = '127.0.0.1',
         user = 'root',
         password = 'ceub123456',
-        database = 'arthur'
+        database = 'comandodelta'
     )
 
 def cria_banco():
@@ -177,10 +177,10 @@ def procura():
     nome = input('Nome: ')
     try:
         cursor.execute(f'select * from {tabela} where {coluna} like %s', ('%'+nome+'%',))
-        usuario = cursor.fetchall()
-        if usuario:
+        item = cursor.fetchall()
+        if item:
             os.system('cls')
-            print(f'Usuário encontrado! \n\n ID - NOME - IDADE - SENHA \n{usuario}')
+            print(f'Item encontrado! \n\n{item}')
         else:
             print('Usuário não encontrado!')
     except:
